@@ -1,0 +1,17 @@
+@media (max-width: 576px) {
+    #edai_course_generator_form #course_description {
+        height: calc(6 * 1.5em + 14px);
+    }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+    #edai_course_generator_form #course_description {
+        height: calc(4 * 1.5em + 14px);
+    }
+}
+
+@media (min-width: 768px) {
+    #edai_course_generator_form #course_description {
+        height: calc(2 * 1.5em + 14px);
+    }
+}
