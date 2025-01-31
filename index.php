@@ -24,10 +24,32 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use local_edai_course_generator_client\webservice;
+
 require_once(__DIR__ . '/../../config.php');
+require_once($CFG->dirroot . '/mod/lti/locallib.php');
+
+global $DB;
 
 require_login();
 require_capability('moodle/course:create', context_system::instance());
+
+$clientid = optional_param('clientid', null, PARAM_TEXT);
+$tooldomain = optional_param('tooldomain', null, PARAM_URL);
+
+// Activate the tool on the client side
+if ($clientid && $tooldomain) {
+    $domain = lti_get_domain_from_url(new moodle_url($tooldomain));
+    $conditions = [
+        'state' => LTI_TOOL_STATE_PENDING,
+        'clientid' => $clientid,
+        'tooldomain' => $domain,
+    ];
+    if ($ltitype = $DB->get_record('lti_types', $conditions)) {
+        $ltitype->state = LTI_TOOL_STATE_CONFIGURED;
+        $DB->update_record('lti_types', $ltitype);
+    }
+}
 
 // Check enrol LTI is enabled.
 if (! enrol_is_enabled('lti')) {
@@ -40,11 +62,22 @@ if ($apikey === '') {
     throw new moodle_exception(get_string('apikey_desc', 'local_edai_course_generator_client'));
 }
 
+// Check if platformurl is available.
+$platformurl = get_config('local_edai_course_generator_client', 'platformurl');
+if ($platformurl === '') {
+    throw new moodle_exception(get_string('platformurl_desc', 'local_edai_course_generator_client'));
+}
+
 $PAGE->set_url(new moodle_url('/local/edai_course_generator_client/index.php'));
 $PAGE->set_context(context_system::instance());
 $PAGE->set_pagelayout('admin');
 $PAGE->set_title(get_string('pluginname', 'local_edai_course_generator_client'));
 $PAGE->set_heading(get_string('pluginname', 'local_edai_course_generator_client'));
+
+// Register plafform if not already registered
+if (!webservice::call('check', $platformurl, $apikey)) {
+    webservice::call('registration', $platformurl, $apikey);
+}
 
 echo $OUTPUT->header();
 

@@ -46,7 +46,7 @@ if ($hassiteconfig) {
         'local_edai_course_generator_client/apikey',
         get_string('apikey', 'local_edai_course_generator_client'),
         get_string('apikey_desc', 'local_edai_course_generator_client'),
-        '',
+        get_string('default_apikey', 'local_edai_course_generator_client'),
         PARAM_TEXT
     ));
 
@@ -63,7 +63,7 @@ if ($hassiteconfig) {
         'local_edai_course_generator_client/platformurl',
         get_string('platformurl', 'local_edai_course_generator_client'),
         get_string('platformurl_desc', 'local_edai_course_generator_client'),
-        'https://123.edunao.com',
+        get_string('default_platformurl', 'local_edai_course_generator_client'),
         PARAM_URL
     ));
 }
