@@ -48,6 +48,8 @@ $string['categoryname'] = 'Generated course category';
 $string['categoryname_desc'] = 'Enter the name of the category where generated courses will be created.';
 $string['platformurl'] = 'Platform URL';
 $string['platformurl_desc'] = 'Enter the base URL of the external platform (e.g., 123-mysite.edunao.com). The plugin will prepend https:// automatically.';
+$string['register'] = 'Register';
+$string['needsregistration'] = '<p><b>You need to register your platform to use the course generator.</b></p>';
 
 // Defaults
 $string['default_apikey'] = '';

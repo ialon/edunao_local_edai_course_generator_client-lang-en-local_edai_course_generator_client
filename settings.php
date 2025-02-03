@@ -24,6 +24,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use local_edai_course_generator_client\webservice;
+
 defined('MOODLE_INTERNAL') || die();
 
 $settings = new admin_externalpage(
@@ -40,6 +42,39 @@ if ($hassiteconfig) {
         get_string('settings', 'local_edai_course_generator_client')
     );
     $ADMIN->add('courses', $settings);
+
+    // Check if the platform is already registered
+    $registrationlink = '';
+    $apikey = get_config('local_edai_course_generator_client', 'apikey');
+    $platformurl = get_config('local_edai_course_generator_client', 'platformurl');
+
+    // Register plafform if not already registered
+    if ($apikey && $platformurl) {
+        if (!webservice::call('check', $platformurl, $apikey)) {
+            $register = optional_param('register', false, PARAM_BOOL);
+            if ($register) {
+               webservice::call('registration', $platformurl, $apikey);
+            } else {
+                // Create a button to trigger registration
+                $url = new \moodle_url(
+                    '\admin\settings.php',
+                    array(
+                        'section' => 'local_edai_course_generator_client_settings',
+                        'register' => true
+                    )
+                );
+                $registerbutton = \html_writer::link(
+                    $url,
+                    new \lang_string('register', 'local_edai_course_generator_client'),
+                    array('class' => 'btn btn-primary mb-3')
+                );
+
+                $registrationlink =
+                    new \lang_string('needsregistration', 'local_edai_course_generator_client') .
+                    $registerbutton;
+            }
+        }
+    }
 
     // Add api key setting.
     $settings->add(new admin_setting_configtext(
@@ -59,10 +94,11 @@ if ($hassiteconfig) {
         PARAM_TEXT
     ));
 
+    // Add platform URL setting.
     $settings->add(new admin_setting_configtext(
         'local_edai_course_generator_client/platformurl',
         get_string('platformurl', 'local_edai_course_generator_client'),
-        get_string('platformurl_desc', 'local_edai_course_generator_client'),
+        get_string('platformurl_desc', 'local_edai_course_generator_client') . $registrationlink,
         get_string('default_platformurl', 'local_edai_course_generator_client'),
         PARAM_URL
     ));
