@@ -42,15 +42,15 @@ $string['course_creation_redirection'] = 'Click here to view the course';
 $string['error_lti_disabled'] = "123 course generation requires to enable LTI enrolment on your platform";
 
 // Settings.
-$string['apikey'] = 'API key';
+$string['apikey'] = '123 API key';
 $string['apikey_desc'] = "Enter the API key given by Edunao to activate the course generation.";
-$string['categoryname'] = 'Generated course category';
-$string['categoryname_desc'] = 'Enter the name of the category where generated courses will be created.';
-$string['platformurl'] = 'Platform URL';
-$string['platformurl_desc'] = 'Enter the base URL of the external platform (e.g., 123-mysite.edunao.com). The plugin will prepend https:// automatically.';
+$string['categoryname'] = 'Category for created courses';
+$string['categoryname_desc'] = 'Enter the name of the local category where courses will be created.';
+$string['platformurl'] = '123 platform URL';
+$string['platformurl_desc'] = 'Enter the base URL of the Edunao 123 platform. The plugin will prepend https:// automatically.';
 $string['register'] = 'Register';
 $string['needsregistration'] = '<p><b>You need to register your platform to use the course generator.</b></p>';
 
 // Defaults
-$string['default_apikey'] = '';
+$string['default_apikey'] = 'fa2e6c8adab11e9dcdb171681f11fdc1';
 $string['default_platformurl'] = 'https://123.edunao.com';

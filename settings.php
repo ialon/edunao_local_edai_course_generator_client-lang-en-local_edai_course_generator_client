@@ -76,6 +76,15 @@ if ($hassiteconfig) {
         }
     }
 
+    // Add platform URL setting.
+    $settings->add(new admin_setting_configtext(
+        'local_edai_course_generator_client/platformurl',
+        get_string('platformurl', 'local_edai_course_generator_client'),
+        get_string('platformurl_desc', 'local_edai_course_generator_client'),
+        get_string('default_platformurl', 'local_edai_course_generator_client'),
+        PARAM_URL
+    ));
+
     // Add api key setting.
     $settings->add(new admin_setting_configtext(
         'local_edai_course_generator_client/apikey',
@@ -89,17 +98,8 @@ if ($hassiteconfig) {
     $settings->add(new admin_setting_configtext(
         'local_edai_course_generator_client/categoryname',
         get_string('categoryname', 'local_edai_course_generator_client'),
-        get_string('categoryname_desc', 'local_edai_course_generator_client'),
+        get_string('categoryname_desc', 'local_edai_course_generator_client') . $registrationlink,
         '123-generated courses',
         PARAM_TEXT
-    ));
-
-    // Add platform URL setting.
-    $settings->add(new admin_setting_configtext(
-        'local_edai_course_generator_client/platformurl',
-        get_string('platformurl', 'local_edai_course_generator_client'),
-        get_string('platformurl_desc', 'local_edai_course_generator_client') . $registrationlink,
-        get_string('default_platformurl', 'local_edai_course_generator_client'),
-        PARAM_URL
     ));
 }
