@@ -74,14 +74,14 @@ $PAGE->set_pagelayout('admin');
 $PAGE->set_title(get_string('pluginname', 'local_edai_course_generator_client'));
 $PAGE->set_heading(get_string('pluginname', 'local_edai_course_generator_client'));
 
-// Register plafform if not already registered
-if (!webservice::call('check', $platformurl, $apikey)) {
-    webservice::call('registration', $platformurl, $apikey);
-}
-
 echo $OUTPUT->header();
 
-echo $OUTPUT->render_from_template('local_edai_course_generator_client/course_generator_form', []);
-$PAGE->requires->js_call_amd('local_edai_course_generator_client/form', 'init');
+// Register plafform if not already registered
+if (!webservice::call('check', $platformurl, $apikey)) {
+    echo $OUTPUT->notification(get_string('error_platform_not_registered', 'local_edai_course_generator_client'), 'error');
+} else {
+    echo $OUTPUT->render_from_template('local_edai_course_generator_client/course_generator_form', []);
+    $PAGE->requires->js_call_amd('local_edai_course_generator_client/form', 'init');
+}
 
 echo $OUTPUT->footer();

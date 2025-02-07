@@ -40,6 +40,7 @@ $string['loading'] = 'Generating your course, please wait... (~1 minute)';
 $string['course_creation_success'] = 'Course generated successfully!';
 $string['course_creation_redirection'] = 'Click here to view the course';
 $string['error_lti_disabled'] = "123 course generation requires to enable LTI enrolment on your platform";
+$string['error_platform_not_registered'] = "Your platform is not registered on the 123 platform. Please contact your administrator.";
 
 // Settings.
 $string['apikey'] = '123 API key';
