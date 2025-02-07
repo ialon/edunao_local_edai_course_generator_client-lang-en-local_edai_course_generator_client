@@ -24,8 +24,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['pluginname'] = 'Generador de Cursos IA';
-$string['settings'] = 'Configuración del Generador de Cursos IA';
+$string['pluginname'] = 'Generador de Cursos 123';
+$string['settings'] = 'Configuración del Generador de Cursos 123';
 $string['form_header'] = '¡Genera un curso utilizando IA!';
 $string['course_description_label'] = 'Descripción del curso';
 $string['course_description_placeholder'] = <<<TEXT
@@ -37,16 +37,18 @@ $string['generate'] = 'Generar';
 $string['loading'] = 'Generando tu curso, por favor espera... (~1 minuto)';
 $string['course_creation_success'] = '¡Curso generado con éxito!';
 $string['course_creation_redirection'] = 'Haz clic aquí para ver el curso';
-
-// Capability strings for the edai_course_generator block.
-$string['edai_course_generator:addinstance'] = 'Permite a un usuario agregar un nuevo bloque Generador de Cursos IA a un curso';
-$string['edai_course_generator:myaddinstance'] = 'Permite a un usuario agregar un nuevo bloque Generador de Cursos IA a su panel de Moodle';
+$string['error_lti_disabled'] = "La generación de cursos 123 requiere habilitar la inscripción LTI en su plataforma";
+$string['error_platform_not_registered'] = "Su plataforma no está registrada en la plataforma 123. Por favor, contacte a su administrador.";
 
 // Settings.
-$string['apikey'] = 'Clave API';
-$string['apikey_desc'] = 'Introduce la clave API proporcionada por Edunao para activar la generación de cursos.';
-$string['categoryname'] = 'Categoría de cursos generados';
-$string['categoryname_desc'] = 'Introduce el nombre de la categoría donde se crearán los cursos generados.';
-$string['platformurl'] = 'URL de la plataforma';
-$string['platformurl_desc'] = 'Introduce la URL base de la plataforma externa (por ejemplo, 123-mysite.edunao.com). El plugin añadirá automáticamente https://.';
-
+$string['apikey'] = 'Clave API 123';
+$string['apikey_desc'] = "Ingrese la clave API proporcionada por Edunao para activar la generación de cursos.";
+$string['categoryname'] = 'Categoría para cursos creados';
+$string['categoryname_desc'] = 'Ingrese el nombre de la categoría local donde se crearán los cursos.';
+$string['platformurl'] = 'URL de la plataforma 123';
+$string['platformurl_desc'] = 'Ingrese la URL base de la plataforma Edunao 123. El plugin agregará https:// automáticamente.';
+$string['register'] = 'Registrar';
+$string['enterurlandkey'] = '<i class="icon fa fa-exclamation-triangle text-warning fa-fw" aria-hidden="true"></i>Ingrese la URL y la clave API de la plataforma 123 para registrar su sitio.';
+$string['error_invalidurlandkey'] = '<i class="icon fa fa-exclamation-triangle text-danger fa-fw" aria-hidden="true"></i>No pudimos registrar su plataforma. Por favor, verifique la URL y la clave API.';
+$string['needsregistration'] = '<i class="icon fa fa-exclamation-triangle text-warning fa-fw" aria-hidden="true"></i>Necesita registrar su plataforma para usar el generador de cursos.';
+$string['alreadyregistered'] = '<i class="icon fa fa-check text-success fa-fw" aria-hidden="true"></i>Su plataforma ya está registrada.';

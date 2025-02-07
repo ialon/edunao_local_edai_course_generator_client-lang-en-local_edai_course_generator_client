@@ -25,7 +25,7 @@
  */
 
 $string['pluginname'] = 'Générateur de cours 123';
-$string['settings'] = 'Générateur de cours 123 - Configuration';
+$string['settings'] = 'Paramètres du Générateur de Cours 123';
 $string['form_header'] = "Générer un cours avec l'IA !";
 $string['course_description_label'] = 'Description du cours';
 $string['course_description_placeholder'] = <<<TEXT
@@ -38,11 +38,18 @@ $string['loading'] = 'Génération en cours, veuillez patienter... (~1 minute)';
 $string['course_creation_success'] = 'Génération de cours réussie!';
 $string['course_creation_redirection'] = 'Cliquer ici pour afficher le cours';
 $string['error_lti_disabled'] = "La génération de cours 123 nécessite l'activation de l'inscription via LTI sur votre plateforme";
+$string['error_platform_not_registered'] = "Votre plateforme n'est pas enregistrée sur la plateforme 123. Veuillez contacter votre administrateur.";
 
 // Settings.
-$string['apikey'] = 'Clé API';
-$string['apikey_desc'] = "Renseignez la clé API fournie par Edunao afin d'activer la génération de cours.";
-$string['categoryname'] = 'Catégorie de cours générés';
-$string['categoryname_desc'] = 'Renseignez le nom de la catégorie à utiliser pour générer les nouveaux cours.';
-$string['platformurl'] = 'URL de la plateforme';
-$string['platformurl_desc'] = "Entrez l'URL de base de la plateforme externe (par exemple, 123-mysite.edunao.com). Le plugin ajoutera automatiquement https://.";
+$string['apikey'] = 'Clé API 123';
+$string['apikey_desc'] = "Entrez la clé API fournie par Edunao pour activer la génération de cours.";
+$string['categoryname'] = 'Catégorie pour les cours créés';
+$string['categoryname_desc'] = 'Entrez le nom de la catégorie locale où les cours seront créés.';
+$string['platformurl'] = 'URL de la plateforme 123';
+$string['platformurl_desc'] = 'Entrez l\'URL de base de la plateforme Edunao 123. Le plugin ajoutera automatiquement https://.';
+$string['register'] = 'Enregistrer';
+$string['enterurlandkey'] = '<i class="icon fa fa-exclamation-triangle text-warning fa-fw" aria-hidden="true"></i>Entrez l\'URL et la clé API de la plateforme 123 pour enregistrer votre site.';
+$string['error_invalidurlandkey'] = '<i class="icon fa fa-exclamation-triangle text-danger fa-fw" aria-hidden="true"></i>Nous n\'avons pas pu enregistrer votre plateforme. Veuillez vérifier l\'URL et la clé API.';
+$string['needsregistration'] = '<i class="icon fa fa-exclamation-triangle text-warning fa-fw" aria-hidden="true"></i>Vous devez enregistrer votre plateforme pour utiliser le générateur de cours.';
+$string['alreadyregistered'] = '<i class="icon fa fa-check text-success fa-fw" aria-hidden="true"></i>Votre plateforme est déjà enregistrée.';
+ 
