@@ -52,6 +52,10 @@ class webservice {
         $response = $curl->get($curlurl, $params);
         $response = json_decode($response);
 
+        if (!is_object($response) || !isset($response->result)) {
+            return false;
+        }
+
         return $response->result;
     }
 
@@ -99,8 +103,8 @@ class webservice {
         $response = $curl->get($curlurl, $params);
         $decoded = json_decode($response);
 
-        if (!isset($decoded->result)) {
-            throw new \Exception((string) $response);
+        if (!is_object($decoded) || !isset($decoded->result)) {
+            return false;
         }
 
         if ($decoded->result && isset($decoded->registrationurl)) {

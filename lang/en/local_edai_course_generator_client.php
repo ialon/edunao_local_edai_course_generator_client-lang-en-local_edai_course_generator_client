@@ -50,7 +50,10 @@ $string['categoryname_desc'] = 'Enter the name of the local category where cours
 $string['platformurl'] = '123 platform URL';
 $string['platformurl_desc'] = 'Enter the base URL of the Edunao 123 platform. The plugin will prepend https:// automatically.';
 $string['register'] = 'Register';
-$string['needsregistration'] = '<p><b>You need to register your platform to use the course generator.</b></p>';
+$string['enterurlandkey'] = '<i class="icon fa fa-exclamation-triangle text-warning fa-fw" aria-hidden="true"></i>Enter the URL and API key of the 123 platform to register your site.';
+$string['error_invalidurlandkey'] = '<i class="icon fa fa-exclamation-triangle text-danger fa-fw" aria-hidden="true"></i>We couldn\'t register your platform. Please check the URL and API key.';
+$string['needsregistration'] = '<i class="icon fa fa-exclamation-triangle text-warning fa-fw" aria-hidden="true"></i>You need to register your platform to use the course generator.';
+$string['alreadyregistered'] = '<i class="icon fa fa-check text-success fa-fw" aria-hidden="true"></i>Your platform is already registered.';
 
 // Defaults
 $string['default_apikey'] = 'fa2e6c8adab11e9dcdb171681f11fdc1';

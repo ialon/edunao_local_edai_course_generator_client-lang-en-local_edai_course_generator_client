@@ -63,16 +63,26 @@ if ($hassiteconfig) {
     $ADMIN->add('courses', $settings);
 
     // Check if the platform is already registered
-    $registrationlink = '';
     $apikey = get_config('local_edai_course_generator_client', 'apikey');
     $platformurl = get_config('local_edai_course_generator_client', 'platformurl');
 
+    // Create a fake button for disabled registration.
+    $registerbutton = \html_writer::tag(
+        'button',
+        new \lang_string('register', 'local_edai_course_generator_client'),
+        array('class' => 'btn btn-secondary disabled', 'onclick' => 'return false;', 'style' => 'cursor: default;')
+    );
+
     // Register plafform if not already registered
-    if ($apikey && $platformurl) {
+    if (!empty($apikey) && !empty($platformurl)) {
         if (!webservice::call('check', $platformurl, $apikey)) {
+            // Check if the user wants to register the platform
             $register = optional_param('register', false, PARAM_BOOL);
+
             if ($register) {
-               webservice::call('registration', $platformurl, $apikey);
+                if (!webservice::call('registration', $platformurl, $apikey)) {
+                    $instructions = 'error_invalidurlandkey';
+                }
             } else {
                 // Create a button to trigger registration
                 $url = new \moodle_url(
@@ -82,18 +92,28 @@ if ($hassiteconfig) {
                         'register' => true
                     )
                 );
+
+                // Create a button to trigger registration
                 $registerbutton = \html_writer::link(
                     $url,
                     new \lang_string('register', 'local_edai_course_generator_client'),
                     array('class' => 'btn btn-primary mb-3')
                 );
 
-                $registrationlink =
-                    new \lang_string('needsregistration', 'local_edai_course_generator_client') .
-                    $registerbutton;
+                $instructions = 'needsregistration';
             }
+        } else {
+            $instructions = 'alreadyregistered';
         }
+    } else {
+        $instructions = 'enterurlandkey';
     }
+
+    $registrationlink = \html_writer::tag(
+        'p',
+        new \lang_string($instructions, 'local_edai_course_generator_client'),
+        array('class' => 'bold')
+    ) . $registerbutton;
 
     // Add platform URL setting.
     $settings->add(new admin_setting_configtext(
