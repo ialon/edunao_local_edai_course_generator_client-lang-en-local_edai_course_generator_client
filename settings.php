@@ -36,6 +36,25 @@ $settings = new admin_externalpage(
 );
 $ADMIN->add('courses', $settings);
 
+// Finalize registration of client platform
+$clientid = optional_param('clientid', null, PARAM_TEXT);
+$tooldomain = optional_param('tooldomain', null, PARAM_URL);
+
+// Activate the tool on the client side
+if ($clientid && $tooldomain) {
+    $domain = lti_get_domain_from_url(new moodle_url($tooldomain));
+    $conditions = [
+        'state' => LTI_TOOL_STATE_PENDING,
+        'clientid' => $clientid,
+        'tooldomain' => $domain,
+    ];
+    if ($ltitype = $DB->get_record('lti_types', $conditions)) {
+        $ltitype->state = LTI_TOOL_STATE_CONFIGURED;
+        $DB->update_record('lti_types', $ltitype);
+    }
+}
+
+
 if ($hassiteconfig) {
     $settings = new admin_settingpage(
         'local_edai_course_generator_client_settings',

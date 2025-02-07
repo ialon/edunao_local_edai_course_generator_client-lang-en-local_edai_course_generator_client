@@ -34,23 +34,6 @@ global $DB;
 require_login();
 require_capability('moodle/course:create', context_system::instance());
 
-$clientid = optional_param('clientid', null, PARAM_TEXT);
-$tooldomain = optional_param('tooldomain', null, PARAM_URL);
-
-// Activate the tool on the client side
-if ($clientid && $tooldomain) {
-    $domain = lti_get_domain_from_url(new moodle_url($tooldomain));
-    $conditions = [
-        'state' => LTI_TOOL_STATE_PENDING,
-        'clientid' => $clientid,
-        'tooldomain' => $domain,
-    ];
-    if ($ltitype = $DB->get_record('lti_types', $conditions)) {
-        $ltitype->state = LTI_TOOL_STATE_CONFIGURED;
-        $DB->update_record('lti_types', $ltitype);
-    }
-}
-
 // Check enrol LTI is enabled.
 if (! enrol_is_enabled('lti')) {
     throw new moodle_exception(get_string('error_lti_disabled', 'local_edai_course_generator_client'));

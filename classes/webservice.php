@@ -105,7 +105,7 @@ class webservice {
 
         if ($decoded->result && isset($decoded->registrationurl)) {
             $registrationurl = new \moodle_url($decoded->registrationurl);
-            $returnurl = new \moodle_url('/local/edai_course_generator_client/index.php');
+            $returnurl = $CFG->wwwroot . '/admin/settings.php?section=local_edai_course_generator_client_settings';
             $registrationurl->param('returnurl', $returnurl);
             redirect($registrationurl);
         }
